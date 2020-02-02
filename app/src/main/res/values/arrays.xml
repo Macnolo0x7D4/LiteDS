@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="station">
+        <item>Select --station--</item>
+        <item>Red 1</item>
+        <item>Red 2</item>
+        <item>Red 3</item>
+        <item>Blue 1</item>
+        <item>Blue 2</item>
+        <item>Blue 3</item>
+    </string-array>
+
+    <string-array name="mode">
+        <item>Select --mode--</item>
+        <item>TeleOperated</item>
+        <item>Autonomous</item>
+        <item>Practice</item>
+        <item>Test</item>
+    </string-array>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="me.macnolo.liteds.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_camera"
+        android:name="me.macnolo.liteds.ui.camera.CameraFragment"
+        android:label="@string/menu_camera"
+        tools:layout="@layout/fragment_camera" />
+
+    <fragment
+        android:id="@+id/nav_gamepad"
+        android:name="me.macnolo.liteds.ui.gamepad.GamepadFragment"
+        android:label="@string/menu_gamepad"
+        tools:layout="@layout/fragment_gamepad" />
+
+    <fragment
+        android:id="@+id/nav_console"
+        android:name="me.macnolo.liteds.ui.console.ConsoleFragment"
+        android:label="@string/menu_console"
+        tools:layout="@layout/fragment_console" />
+</navigation>
