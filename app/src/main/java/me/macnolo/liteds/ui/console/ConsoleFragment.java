@@ -1,6 +1,7 @@
 package me.macnolo.liteds.ui.console;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import me.macnolo.liteds.R;
 
 public class ConsoleFragment extends Fragment {
+    public Handler handler = new Handler();
     private EditText verbose;
     private Button clearButton;
 

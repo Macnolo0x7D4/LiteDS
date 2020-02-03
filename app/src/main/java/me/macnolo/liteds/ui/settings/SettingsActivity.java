@@ -5,7 +5,6 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import me.macnolo.liteds.ui.settings.SettingsFragment;
 import me.macnolo.liteds.R;
 
 public class SettingsActivity extends AppCompatActivity {

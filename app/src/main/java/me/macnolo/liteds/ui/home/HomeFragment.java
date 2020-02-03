@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import me.macnolo.liteds.MainActivity;
 import me.macnolo.liteds.R;
 import me.macnolo.liteds.UIThread;
+import me.macnolo.liteds.ui.ClassesRunnables;
 
 import static android.content.Context.BATTERY_SERVICE;
 
@@ -28,7 +29,6 @@ public class HomeFragment extends Fragment{
 
     private TextView batteryLevelLabel;
     private TextView teamNumber;
-    private BatteryManager batteryStatus;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment{
             }
         });
 
-        UIThread thread = new UIThread(batteryLevelLabel, root);
+        UIThread thread = new UIThread(batteryLevelLabel, root, ClassesRunnables.HOME);
         new Thread(thread).start();
 
         teamNumber.setText(MainActivity.getTeam(super.getContext()));
