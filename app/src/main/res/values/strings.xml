@@ -24,4 +24,23 @@
     <string name="main_battery">Robot Voltage: </string>
     <string name="main_enable">Enable</string>
     <string name="main_disable">Disable</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="protocol_header">Protocol Configuration</string>
+    <string name="sync_header">Sync</string>
+
+    <string name="team_title">Team Number</string>
+    <string name="protocol_title">Select Protocol</string>
+    <string name="ip_title">Manual TCP/IP Configuration</string>
+    <string name="manualip_title">IP or Domain</string>
+
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="credits">Created by Manuel Díaz\nfrom WinT 3794</string>
+    <string name="copyright">Copyright © 2020. All rights reserved.\nUnder MIT License.</string>
 </resources>

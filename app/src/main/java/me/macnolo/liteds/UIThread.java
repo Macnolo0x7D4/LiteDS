@@ -1,18 +1,28 @@
 package me.macnolo.liteds;
 
-import android.os.AsyncTask;
 import android.view.View;
 import android.widget.TextView;
+import me.macnolo.liteds.ui.home.HomeFragment;
 
-import androidx.fragment.app.Fragment;
+public class UIThread implements Runnable{
+    private HomeFragment home = new HomeFragment();
 
-public class UIThread extends AsyncTask<View, Fragment, TextView> {
-    @Override
-    protected TextView doInBackground(View... views) {
-        return null;
+    private TextView t;
+    private View view;
+
+    public UIThread(TextView t, View view) {
+        this.t = t;
+        this.view = view;
     }
 
     @Override
-    protected void onPostExecute(TextView t){
+    public void run(){
+        home.handler.post(new Runnable() {
+            @Override
+            public void run() {
+                int battery = home.getBatteryPercent(view);
+                t.setText(battery + "%");
+            }
+        });
     }
 }

@@ -17,4 +17,14 @@
         <item>Practice</item>
         <item>Test</item>
     </string-array>
+
+    <string-array name="protocol">
+        <item>Infinite Recharge</item>
+        <item>Manual TCP/IP Config</item>
+    </string-array>
+
+    <string-array name="protocol_values">
+        <item>2020</item>
+        <item>manual</item>
+    </string-array>
 </resources>
