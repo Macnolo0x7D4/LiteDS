@@ -1,9 +1,16 @@
+/*
+ * ----------------------------------------------------------------------------
+ *  Copyright (c) Manuel Diaz Rojo form WinT 3794. All Rights Reserved.
+ *  Open Source Software - may be modified and shared by FRC teams.
+ *  This code is under MIT License. Check LICENSE file at project root .
+ * ----------------------------------------------------------------------------
+ */
+
 package me.macnolo.liteds;
 
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import me.macnolo.liteds.ui.ClassesRunnables;
 import me.macnolo.liteds.ui.console.ConsoleFragment;
 import me.macnolo.liteds.ui.home.HomeFragment;
@@ -50,8 +57,7 @@ public class UIThread implements Runnable{
                 console.handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        int battery = home.getBatteryPercent(view);
-                        //et.setText(et.getText());
+
                     }
                 });
                 break;

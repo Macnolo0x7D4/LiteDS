@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="LiteDS" pattern="src:**||src[app]:me.macnolo.liteds..*||src[app]:me.macnolo.liteds.protocol..*||src[app]:me.macnolo.liteds.ui..*||src[app]:me.macnolo.liteds.ui.camera..*||src[app]:me.macnolo.liteds.ui.about..*||src[app]:me.macnolo.liteds.ui.console..*||src[app]:me.macnolo.liteds.ui.home..*||src[app]:me.macnolo.liteds.ui.gamepad..*||src[app]:me.macnolo.liteds.ui.settings..*" />
+</component>
