@@ -1,0 +1,150 @@
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"$PROJECT_DIR$\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision b7d9409a4bd1147e6f7526f6d1652c335579ed4f)
++++ .idea/vcs.xml	(date 1581644410960)
+@@ -2,5 +2,6 @@
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+     <mapping directory="$PROJECT_DIR$" vcs="Git" />
++    <mapping directory="$PROJECT_DIR$/LibDS-Mod" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>include ':app'\r\nrootProject.name='LiteDS'\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- settings.gradle	(revision b7d9409a4bd1147e6f7526f6d1652c335579ed4f)
++++ settings.gradle	(date 1581644376933)
+@@ -1,2 +1,2 @@
+-include ':app'
++include ':app', ':libds'
+ rootProject.name='LiteDS'
+Index: libds/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- libds/build.gradle	(date 1581644444384)
++++ libds/build.gradle	(date 1581644444384)
+@@ -0,0 +1,16 @@
++/*
++ * ----------------------------------------------------------------------------
++ *  Copyright (c) Manuel Diaz Rojo form WinT 3794. All Rights Reserved.
++ *  Open Source Software - may be modified and shared by FRC teams.
++ *  This code is under MIT License. Check LICENSE file at project root .
++ * ----------------------------------------------------------------------------
++ */
++
++apply plugin: 'java-library'
++
++dependencies {
++    implementation fileTree(dir: 'libs', include: ['*.jar'])
++}
++
++sourceCompatibility = "7"
++targetCompatibility = "7"
+Index: libds/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- libds/.gitignore	(date 1581644377352)
++++ libds/.gitignore	(date 1581644377352)
+@@ -0,0 +1,1 @@
++/build
+Index: libds/src/main/java/me/macnolo/libds/controller/LibDS.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- libds/src/main/java/me/macnolo/libds/controller/LibDS.java	(date 1581788017191)
++++ libds/src/main/java/me/macnolo/libds/controller/LibDS.java	(date 1581788017191)
+@@ -0,0 +1,79 @@
++/*
++ * ----------------------------------------------------------------------------
++ *  Copyright (c) Manuel Diaz Rojo form WinT 3794. All Rights Reserved.
++ *  Open Source Software - may be modified and shared by FRC teams.
++ *  This code is under MIT License. Check LICENSE file at project root .
++ * ----------------------------------------------------------------------------
++ */
++
++package me.macnolo.libds.controller;
++
++import java.io.DataOutputStream;
++import java.io.IOException;
++import java.net.Socket;
++
++import me.macnolo.libds.enums.Alliance;
++import me.macnolo.libds.enums.IpFormats;
++import me.macnolo.libds.enums.Mode;
++import me.macnolo.libds.enums.Protocol;
++import me.macnolo.libds.etc.IpFormater;
++import me.macnolo.libds.etc.Utilities;
++import me.macnolo.libds.object.NetPackage;
++
++public class LibDS {
++    private Controller controller;
++    private int team;
++    private Alliance alliance;
++    private Mode mode;
++    private Protocol protocol;
++    private String ip;
++
++    public LibDS(int team, Alliance alliance, Mode mode, Protocol protocol, String ip) {
++        this.team = team;
++        this.alliance = alliance;
++        this.mode = mode;
++        this.protocol = protocol;
++        this.ip = ip;
++
++        if (ip == null || ip == "") {
++            switch (protocol) {
++                case INFINITE_RECHARGE:
++                    ip = new IpFormater(this.team, IpFormats.M_DNS_1, 2).getAddress();
++                    break;
++            }
++        }
++
++        controller = new Controller(this.team, this.alliance, this.mode, this.protocol, this.ip);
++
++        controller.start();
++    }
++
++    public int close() {
++        try {
++            controller.join();
++            return 0;
++        } catch (InterruptedException e) {
++            e.printStackTrace();
++            return 1;
++        }
++    }
++
++    public IOException sendPackage(NetPackage netPackage) {
++        try {
++            Socket socket = new Socket(this.ip, Utilities.PORT);
++
++            DataOutputStream dataOutput = new DataOutputStream(socket.getOutputStream());
++            dataOutput.write(netPackage.getPackage());
++
++            dataOutput.close();
++
++            return null;
++        } catch (IOException e) {
++            return e;
++        }
++    }
++
++    public void restart() {
++        controller.start();
++    }
++}
