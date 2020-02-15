@@ -11,6 +11,8 @@ package me.macnolo.libds.controller;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
 
 import me.macnolo.libds.enums.Alliance;
 import me.macnolo.libds.enums.Mode;
@@ -24,19 +26,14 @@ public class Controller extends Thread {
     private Alliance alliance;
     private Mode mode;
     private Protocol protocol;
-    private String ip;
-
-    private byte[] data;
-    private String origin;
 
     private boolean isRunning = false;
 
-    public Controller(int team, Alliance alliance, Mode mode, Protocol protocol, String ip) {
+    public Controller(int team, Alliance alliance, Mode mode, Protocol protocol) {
         this.team = team;
         this.alliance = alliance;
         this.mode = mode;
         this.protocol = protocol;
-        this.ip = ip;
     }
 
     @Override
@@ -46,18 +43,38 @@ public class Controller extends Thread {
 
             while (isRunning) {
                 NetPackage pkg = new NetPackage(PackageTypes.FMS);
-                DatagramPacket dataPkg = new DatagramPacket(pkg.getPackage(), pkg.getPackage().length);
+                DatagramPacket dataPkg = new DatagramPacket(pkg.getPackage(), pkg.getLength());
 
                 udp.receive(dataPkg);
 
-                data = dataPkg.getData();
-                origin = dataPkg.getAddress().toString();
+                byte[] data = dataPkg.getData();
+                String origin = dataPkg.getAddress().toString();
+
+                processData(data, origin);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public void processData(byte[] data, String origin) {
+
+    }
+
+    public Exception sendPackage(PackageTypes pkgType, NetPackage netPackage, InetAddress ip) {
+        try {
+            DatagramSocket udp = new DatagramSocket();
+            DatagramPacket pkg = new DatagramPacket(netPackage.getPackage(), netPackage.getLength(), ip, Utilities.PORT);
+
+            udp.send(pkg);
+        } catch (SocketException e) {
+            return e;
+        } catch (IOException e) {
+            return e;
+        }
+
+        return null;
+    }
 
     public boolean isRunning() {
         return isRunning;

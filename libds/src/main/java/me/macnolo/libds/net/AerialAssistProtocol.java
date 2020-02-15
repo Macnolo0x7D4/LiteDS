@@ -10,19 +10,10 @@ package me.macnolo.libds.net;
 
 import me.macnolo.libds.etc.Utilities;
 
-public class AerialAssistProtocol {
+public class AerialAssistProtocol extends SuperProtocol{
 
-    public static String getVersion(){
-        return "v.1.0 nightly.";
-    }
-
-    public static String getName() {
-        return "Aerial Assist Protocol.";
-    }
-
-    public static String getInfo() {
-        return getName() + " " + getVersion() + Utilities.CREDITS_PROTOCOL;
-    }
+    private static String version = "v.1.0 nightly.";
+    private static String name = "Aerial Assist Protocol.";
 
     static final int cEnabled          = 0x20;
     static final int cTestMode         = 0x02;

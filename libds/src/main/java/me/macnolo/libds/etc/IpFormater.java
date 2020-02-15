@@ -8,6 +8,9 @@
 
 package me.macnolo.libds.etc;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import me.macnolo.libds.enums.IpFormats;
 
 public class IpFormater {
@@ -38,5 +41,15 @@ public class IpFormater {
                 return finalAddress;
         }
         return "";
+    }
+
+    public InetAddress getInetAddress(){
+        InetAddress addr = null;
+        try {
+            addr = InetAddress.getByAddress(getAddress().getBytes());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return addr;
     }
 }

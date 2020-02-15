@@ -22,4 +22,8 @@ public class NetPackage {
     public byte[] getPackage() {
         return pkg;
     }
+
+    public int getLength(){
+        return pkg.length;
+    }
 }
