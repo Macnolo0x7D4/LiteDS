@@ -31,13 +31,6 @@ public class Controller extends Thread {
 
     private boolean isRunning = false;
 
-    public Controller(int team, Alliance alliance, Mode mode, Protocol protocol) {
-        this.team = team;
-        this.alliance = alliance;
-        this.mode = mode;
-        this.protocol = protocol;
-    }
-
     public Controller(int team, Alliance alliance, Mode mode, Protocol protocol, String ip) {
         this.team = team;
         this.alliance = alliance;
@@ -63,5 +56,14 @@ public class Controller extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public void setIsRunning(boolean running) {
+        isRunning = running;
     }
 }

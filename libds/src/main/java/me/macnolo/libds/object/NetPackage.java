@@ -13,14 +13,9 @@ import me.macnolo.libds.enums.PackageTypes;
 public class NetPackage {
     private byte[] pkg = new byte[1024];
 
-    public NetPackage(PackageTypes pkg) {
-        switch (pkg) {
-            case FMS:
-                break;
-            case RADIO:
-                break;
-            case ROBOT:
-                break;
+    public NetPackage(PackageTypes pkgTypes) {
+        if(pkgTypes == PackageTypes.ROBOT) {
+
         }
     }
 

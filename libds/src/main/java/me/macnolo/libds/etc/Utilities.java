@@ -14,4 +14,6 @@ public class Utilities {
 
     public static final int PORT = 9999;
 
+    public static String CREDITS_PROTOCOL = "By Manuel Diaz from WinT 3794.";
+
 }
