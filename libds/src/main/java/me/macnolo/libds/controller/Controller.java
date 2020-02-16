@@ -29,6 +29,8 @@ public class Controller extends Thread {
 
     private boolean isRunning = true;
 
+    private ProtocolController protocolController;
+
     private static int robotPackagesSent = 0;
     private static int fmsPackagesSent = 0;
     private static int radioPackagesSent = 0;
@@ -42,6 +44,8 @@ public class Controller extends Thread {
         this.alliance = alliance;
         this.mode = mode;
         this.protocol = protocol;
+
+        ProtocolController protocolController = new ProtocolController(this.protocol);
     }
 
     @Override
@@ -79,9 +83,10 @@ public class Controller extends Thread {
     }
 
     public void processData(byte[] data, Protocol protocol, PackageTypes pkgType) {
-        if(data != null) {
+        if(data != null && data.length == 1024) {
             switch (pkgType){
                 case ROBOT:
+                    protocolController.getSuperProtocol().proccessRobotData(data);
                     upgradeRobotPackagesReceived();
                     break;
                 case FMS:
