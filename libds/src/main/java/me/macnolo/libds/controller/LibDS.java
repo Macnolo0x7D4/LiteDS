@@ -42,7 +42,7 @@ public class LibDS {
 
         switch(protocol) {
             case AERIAL_ASSIST:
-                if(robotIp == null || robotIp == ""){
+                if(robotIp == null || robotIp.equals("")){
                     this.robotIp = new IpFormater(this.team, IpFormats.IP_1, 1).getAddress();
                 }
                 this.fmsIp = new IpFormater(this.team, IpFormats.IP_1, 1).getAddress();
@@ -51,9 +51,17 @@ public class LibDS {
         }
 
         try {
-            ROBOT_ADDR = InetAddress.getByAddress(this.robotIp.getBytes());
-            FMS_ADDR = InetAddress.getByAddress(this.fmsIp.getBytes());
-            RADIO_ADDR = InetAddress.getByAddress(this.radioIp.getBytes());
+            if(this.robotIp != null) {
+                ROBOT_ADDR = InetAddress.getByAddress(this.robotIp.getBytes());
+            }
+
+            if (this.fmsIp != null) {
+                FMS_ADDR = InetAddress.getByAddress(this.fmsIp.getBytes());
+            }
+
+            if (this.radioIp != null) {
+                RADIO_ADDR = InetAddress.getByAddress(this.radioIp.getBytes());
+            }
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

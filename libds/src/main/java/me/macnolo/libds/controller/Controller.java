@@ -27,9 +27,17 @@ public class Controller extends Thread {
     private Mode mode;
     private Protocol protocol;
 
-    private boolean isRunning = false;
+    private boolean isRunning = true;
 
-    public Controller(int team, Alliance alliance, Mode mode, Protocol protocol) {
+    private static int robotPackagesSent = 0;
+    private static int fmsPackagesSent = 0;
+    private static int radioPackagesSent = 0;
+
+    private static int robotPackagesReceived = 0;
+    private static int fmsPackagesReceived = 0;
+    private static int radioPackagesReceived = 0;
+
+    Controller(int team, Alliance alliance, Mode mode, Protocol protocol) {
         this.team = team;
         this.alliance = alliance;
         this.mode = mode;
@@ -39,40 +47,93 @@ public class Controller extends Thread {
     @Override
     public void run() {
         try {
-            DatagramSocket udp = new DatagramSocket(Utilities.PORT);
+            DatagramSocket robotSocket = new DatagramSocket(Utilities.ROBOT_PORT);
+            DatagramSocket fmsSocket = new DatagramSocket(Utilities.FMS_PORT);
+            DatagramSocket radioSocket = new DatagramSocket(Utilities.RADIO_PORT);
 
             while (isRunning) {
-                NetPackage pkg = new NetPackage(PackageTypes.FMS);
-                DatagramPacket dataPkg = new DatagramPacket(pkg.getPackage(), pkg.getLength());
+                NetPackage robotPkg = new NetPackage(PackageTypes.ROBOT);
+                DatagramPacket robotDataPkg = new DatagramPacket(robotPkg.getPackage(), robotPkg.getLength());
 
-                udp.receive(dataPkg);
+                NetPackage fmsPkg = new NetPackage(PackageTypes.FMS);
+                DatagramPacket fmsDataPkg = new DatagramPacket(fmsPkg.getPackage(), fmsPkg.getLength());
 
-                byte[] data = dataPkg.getData();
-                String origin = dataPkg.getAddress().toString();
+                NetPackage radioPkg = new NetPackage(PackageTypes.RADIO);
+                DatagramPacket radioDataPkg = new DatagramPacket(radioPkg.getPackage(), radioPkg.getLength());
 
-                processData(data, origin);
+                robotSocket.receive(robotDataPkg);
+                fmsSocket.receive(fmsDataPkg);
+                radioSocket.receive(radioDataPkg);
+
+                byte[] robotData = robotDataPkg.getData();
+                byte[] fmsData = fmsDataPkg.getData();
+                byte[] radioData = radioDataPkg.getData();
+
+                processData(robotData, this.protocol, PackageTypes.ROBOT);
+                processData(fmsData, this.protocol, PackageTypes.FMS);
+                processData(radioData, this.protocol, PackageTypes.RADIO);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void processData(byte[] data, String origin) {
+    public void processData(byte[] data, Protocol protocol, PackageTypes pkgType) {
+        if(data != null) {
+            switch (pkgType){
+                case ROBOT:
+                    upgradeRobotPackagesReceived();
+                    break;
+                case FMS:
+                    upgradeFMSPackagesReceived();
+                    break;
+                case RADIO:
+                    upgradeRadioPackagesReceived();
+                    break;
+            }
+        }
 
     }
 
-    public Exception sendPackage(PackageTypes pkgType, NetPackage netPackage, InetAddress ip) {
-        try {
-            DatagramSocket udp = new DatagramSocket();
-            DatagramPacket pkg = new DatagramPacket(netPackage.getPackage(), netPackage.getLength(), ip, Utilities.PORT);
+    public Exception sendPackage(PackageTypes pkgType, NetPackage netPackage) {
+        switch (pkgType) {
+            case ROBOT:
+                try {
+                    DatagramSocket udp = new DatagramSocket();
+                    DatagramPacket pkg = new DatagramPacket(netPackage.getPackage(), netPackage.getLength(), LibDS.ROBOT_ADDR, Utilities.ROBOT_PORT);
 
-            udp.send(pkg);
-        } catch (SocketException e) {
-            return e;
-        } catch (IOException e) {
-            return e;
+                    udp.send(pkg);
+                    upgradeRobotPackagesSent();
+                } catch (IOException e) {
+                    return e;
+                }
+
+                break;
+            case FMS:
+                try {
+                    DatagramSocket udp = new DatagramSocket();
+                    DatagramPacket pkg = new DatagramPacket(netPackage.getPackage(), netPackage.getLength(), LibDS.FMS_ADDR, Utilities.FMS_PORT);
+
+                    udp.send(pkg);
+                    upgradeFMSPackagesSent();
+                } catch (IOException e) {
+                    return e;
+                }
+
+                break;
+            case RADIO:
+                try {
+                    DatagramSocket udp = new DatagramSocket();
+                    DatagramPacket pkg = new DatagramPacket(netPackage.getPackage(), netPackage.getLength(), LibDS.RADIO_ADDR, Utilities.RADIO_PORT);
+
+                    udp.send(pkg);
+                    upgradeRadioPackagesSent();
+                } catch (IOException e) {
+                    return e;
+                }
+
+                break;
         }
-
         return null;
     }
 
@@ -83,4 +144,13 @@ public class Controller extends Thread {
     public void setIsRunning(boolean running) {
         isRunning = running;
     }
+
+
+    private static void upgradeRobotPackagesSent() { robotPackagesSent++; }
+    private static void upgradeFMSPackagesSent() { fmsPackagesSent++; }
+    private static void upgradeRadioPackagesSent() { radioPackagesSent++; }
+
+    private static void upgradeRobotPackagesReceived() { robotPackagesReceived++; }
+    private static void upgradeFMSPackagesReceived() { fmsPackagesReceived++; }
+    private static void upgradeRadioPackagesReceived() { radioPackagesReceived++; }
 }

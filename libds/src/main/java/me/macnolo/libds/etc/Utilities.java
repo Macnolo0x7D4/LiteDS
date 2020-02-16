@@ -12,7 +12,9 @@ public class Utilities {
     public static final int SEND_TIMER = 1;
     public static final int REC_TIMER = 50;
 
-    public static final int PORT = 9999;
+    public static final int ROBOT_PORT = 9999;
+    public static final int FMS_PORT = 9999;
+    public static final int RADIO_PORT = 9999;
 
     public static String CREDITS_PROTOCOL = "By Manuel Diaz from WinT 3794.";
 
