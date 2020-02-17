@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void initDS() {
         ds = new LibDS(getTeam(), Alliance.RED1, Mode.TELEOP
-                , getProtocol(), getManualIp());
+                , getProtocol(), null);
     }
 
     private int getTeam() {
@@ -111,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
             String ip = sharedPref.getString("manual_ip", "-1");
             return ip;
         }
+
         return null;
+
     }
 
     @Override
