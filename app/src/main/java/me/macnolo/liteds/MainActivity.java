@@ -25,8 +25,6 @@ import androidx.preference.PreferenceManager;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 
 import me.macnolo.libds.controller.LibDS;
 import me.macnolo.libds.enums.Alliance;
@@ -40,9 +38,6 @@ import me.macnolo.liteds.ui.settings.SettingsActivity;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private AppBarConfiguration mActionBarConfiguration;
-
-    public Handler handler = new Handler();
 
     LibDS ds;
     private SharedPreferences sharedPref;
@@ -69,12 +64,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         initDS();
-
-
     }
 
     public void initDS() {
-        ds = new LibDS(getTeam(), new StationSpinner().getStationSelected(), new ModeSpinner().getModeSelected(), getProtocol(), getManualIp());
+        ds = new LibDS(getTeam(), Alliance.RED1, Mode.TELEOP
+                , getProtocol(), getManualIp());
     }
 
     private int getTeam() {
