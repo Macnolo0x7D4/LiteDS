@@ -10,7 +10,11 @@ package me.macnolo.liteds;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import me.macnolo.liteds.ui.ClassesRunnables;
 import me.macnolo.liteds.ui.console.ConsoleFragment;
 import me.macnolo.liteds.ui.home.HomeFragment;

@@ -10,10 +10,16 @@ package me.macnolo.liteds.ui.settings;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import me.macnolo.liteds.MainActivity;
 import me.macnolo.liteds.R;
+import me.macnolo.liteds.ui.home.HomeFragment;
 
 public class SettingsActivity extends AppCompatActivity {
     @Override
@@ -31,6 +37,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
+        Toast.makeText(this,"Restart the app to apply changes.",Toast.LENGTH_LONG).show();
         finish();
         return true;
     }

@@ -21,7 +21,6 @@
 
         <EditTextPreference
             android:id="@+id/teamNumber"
-            android:inputType="numberPassword"
             app:key="team"
             app:title="@string/team_title"
             app:useSimpleSummaryProvider="true" />

@@ -22,11 +22,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
 
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
+import me.macnolo.libds.controller.LibDS;
+import me.macnolo.libds.enums.Alliance;
+import me.macnolo.libds.enums.Mode;
+import me.macnolo.libds.enums.Protocol;
 import me.macnolo.liteds.ui.about.AboutActivity;
+import me.macnolo.liteds.ui.home.ModeSpinner;
+import me.macnolo.liteds.ui.home.StationSpinner;
 import me.macnolo.liteds.ui.settings.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,9 +42,16 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private AppBarConfiguration mActionBarConfiguration;
 
+    public Handler handler = new Handler();
+
+    LibDS ds;
+    private SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,6 +67,57 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        initDS();
+
+
+    }
+
+    public void initDS() {
+        ds = new LibDS(getTeam(), new StationSpinner().getStationSelected(), new ModeSpinner().getModeSelected(), getProtocol(), getManualIp());
+    }
+
+    private int getTeam() {
+        int team = Integer.parseInt(this.sharedPref.getString("team","-1"));
+        return team;
+    }
+
+    private Protocol getProtocol() {
+        Protocol protocol;
+        int protocolSelector = Integer.parseInt(this.sharedPref.getString("protocol", "-1"));
+
+        switch (protocolSelector) {
+            case 2019:
+                protocol = Protocol.DEEP_SPACE;
+                break;
+            case 2018:
+                protocol = Protocol.POWER_UP;
+                break;
+            case 2017:
+                protocol = Protocol.STEAMWORKS;
+                break;
+            case 2016:
+                protocol = Protocol.STRONGHOLD;
+                break;
+            case 2015:
+                protocol = Protocol.RECYCLE_RUSH;
+                break;
+            case 2014:
+                protocol = Protocol.AERIAL_ASSIST;
+                break;
+            default:
+                protocol = Protocol.INFINITE_RECHARGE;
+        }
+        return protocol;
+    }
+
+    public String getManualIp() {
+        boolean manualSwitch = this.sharedPref.getBoolean("manual_switch", false);
+        if(manualSwitch) {
+            String ip = sharedPref.getString("manual_ip", "-1");
+            return ip;
+        }
+        return null;
     }
 
     @Override
@@ -79,6 +145,23 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String team = sharedPref.getString("team","-1");
         return team;
+    }
+
+    public static String getProtocol(Context context) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String protocol = sharedPref.getString("protocol", "-1");
+        return protocol;
+    }
+
+    public static String getManualIp(Context context) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean manualSwitch = sharedPref.getBoolean("manual_switch", false);
+        if(manualSwitch) {
+            String ip = sharedPref.getString("manual_ip", "-1");
+            return ip;
+        }
+
+        return null;
     }
 
     @Override

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="station">
-        <item>Select --station--</item>
         <item>Red 1</item>
         <item>Red 2</item>
         <item>Red 3</item>
@@ -11,7 +10,6 @@
     </string-array>
 
     <string-array name="mode">
-        <item>Select --mode--</item>
         <item>TeleOperated</item>
         <item>Autonomous</item>
         <item>Practice</item>
@@ -20,11 +18,21 @@
 
     <string-array name="protocol">
         <item>Infinite Recharge</item>
-        <item>Manual TCP/IP Config</item>
+        <item>Deep Space</item>
+        <item>Power Up</item>
+        <item>Steamworks</item>
+        <item>Stronghold</item>
+        <item>Recycle Rush</item>
+        <item>Aerial Assist</item>
     </string-array>
 
     <string-array name="protocol_values">
         <item>2020</item>
-        <item>manual</item>
+        <item>2019</item>
+        <item>2018</item>
+        <item>2017</item>
+        <item>2016</item>
+        <item>2015</item>
+        <item>2014</item>
     </string-array>
 </resources>

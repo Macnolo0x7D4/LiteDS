@@ -8,6 +8,8 @@
 
 package me.macnolo.liteds.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Bundle;
@@ -15,37 +17,72 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.preference.PreferenceManager;
 
+import org.w3c.dom.Text;
+
+import java.util.Objects;
+
+import me.macnolo.libds.controller.LibDS;
+import me.macnolo.libds.enums.Alliance;
+import me.macnolo.libds.enums.Mode;
 import me.macnolo.liteds.MainActivity;
 import me.macnolo.liteds.R;
 import me.macnolo.liteds.UIThread;
+import me.macnolo.libds.enums.Protocol;
 import me.macnolo.liteds.ui.ClassesRunnables;
 
 import static android.content.Context.BATTERY_SERVICE;
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment {
 
     public Handler handler = new Handler();
+    public Handler settings = new Handler();
 
     private Button disableButton;
     private Button enableButton;
-
     private TextView batteryLevelLabel;
     private TextView teamNumber;
+    private Spinner modeSpinner;
+    private Spinner stationSpinner;
+
+    SharedPreferences sharedPref;
+
+    public int team = 0;
+    private Protocol protocol = Protocol.AERIAL_ASSIST;
+    private String manualIp = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
         disableButton = root.findViewById(R.id.disableButton);
         enableButton = root.findViewById(R.id.enableButton);
         batteryLevelLabel = root.findViewById(R.id.batteryLevelLabel);
         teamNumber = root.findViewById(R.id.teamNumber);
+
+        modeSpinner = root.findViewById(R.id.modeSpinner);
+        ArrayAdapter<CharSequence> modeAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.mode, android.R.layout.simple_spinner_item);
+        modeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        modeSpinner.setAdapter(modeAdapter);
+        modeSpinner.setOnItemSelectedListener(new ModeSpinner());
+
+        stationSpinner = root.findViewById(R.id.stationSpinner);
+        ArrayAdapter<CharSequence> stationAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.station, android.R.layout.simple_spinner_item);
+        stationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        stationSpinner.setAdapter(stationAdapter);
+        modeSpinner.setOnItemSelectedListener(new StationSpinner());
 
         enableButton.setEnabled(true);
         disableButton.setEnabled(false);
@@ -63,7 +100,7 @@ public class HomeFragment extends Fragment{
         });
 
         disableButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick (View v) {
+            public void onClick(View v) {
                 enableButton.setEnabled(true);
                 disableButton.setEnabled(false);
 
@@ -72,17 +109,30 @@ public class HomeFragment extends Fragment{
             }
         });
 
+        updateConfig(false);
+
+        teamNumber.setText(Integer.toString(team));
+
         UIThread thread = new UIThread(batteryLevelLabel, root, ClassesRunnables.HOME);
         new Thread(thread).start();
-
-        teamNumber.setText(MainActivity.getTeam(super.getContext()));
-
         return root;
     }
 
-    public int getBatteryPercent(View view){
-        BatteryManager status = (BatteryManager)view.getContext().getSystemService(BATTERY_SERVICE);
+    public int getBatteryPercent(View view) {
+        BatteryManager status = (BatteryManager) view.getContext().getSystemService(BATTERY_SERVICE);
         int percent = status.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
         return percent;
+    }
+
+    public void updateConfig(boolean reload) {
+        if(reload){
+            sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        }
+        team = getTeam();
+    }
+
+    private int getTeam() {
+        int team = Integer.parseInt(this.sharedPref.getString("team","-1"));
+        return team;
     }
 }
