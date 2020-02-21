@@ -12,34 +12,41 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import me.macnolo.libds.enums.Alliance;
+import me.macnolo.liteds.MainActivity;
 
 public class StationSpinner implements AdapterView.OnItemSelectedListener {
-    private String stationSelected;
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        stationSelected = parent.getItemAtPosition(position).toString();
+        String stationSelected = parent.getItemAtPosition(position).toString();
+        Alliance alliance;
+
+        switch (stationSelected){
+            default:
+                alliance = Alliance.RED1;
+                break;
+            case "Red 2":
+                alliance = Alliance.RED2;
+                break;
+            case "Red 3":
+                alliance = Alliance.RED3;
+                break;
+            case "Blue 1":
+                alliance = Alliance.BLUE1;
+                break;
+            case "Blue 2":
+                alliance = Alliance.BLUE2;
+                break;
+            case "Blue 3":
+                alliance = Alliance.BLUE3;
+                break;
+        }
+
+        MainActivity main = new MainActivity();
+        main.ds.setNewAlliance(alliance);
+        main.ds.updateConfig();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        stationSelected = "Red 1";
-    }
-
-    public Alliance getStationSelected() {
-        switch (stationSelected){
-            default:
-                return Alliance.RED1;
-            case "Red 2":
-                return Alliance.RED2;
-            case "Red 3":
-                return Alliance.RED3;
-            case "Blue 1":
-                return Alliance.BLUE1;
-            case "Blue 2":
-                return Alliance.BLUE2;
-            case "Blue 3":
-                return Alliance.BLUE3;
-        }
     }
 }

@@ -12,30 +12,37 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import me.macnolo.libds.enums.Mode;
+import me.macnolo.liteds.MainActivity;
 
 public class ModeSpinner implements AdapterView.OnItemSelectedListener {
-    private String modeSelected;
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        modeSelected = parent.getItemAtPosition(position).toString();
+        String modeSelected = parent.getItemAtPosition(position).toString();
+        Mode mode;
+
+        switch(modeSelected){
+            default:
+                mode = Mode.TELEOP;
+                break;
+            case "Autonomous":
+                mode = Mode.AUTO;
+                break;
+            case "Practice":
+                mode = Mode.PRACTICE;
+                break;
+            case "Test":
+                mode = Mode.TEST;
+                break;
+        }
+
+        MainActivity main = new MainActivity();
+        main.ds.setNewMode(mode);
+        main.ds.updateConfig();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        modeSelected = "TeleOperated";
-    }
 
-    public Mode getModeSelected(){
-        switch(modeSelected){
-            default:
-                return Mode.TELEOP;
-            case "Autonomous":
-                return Mode.AUTO;
-            case "Practice":
-                return Mode.PRACTICE;
-            case "Test":
-                return Mode.TEST;
-        }
     }
 }

@@ -10,10 +10,8 @@ package me.macnolo.liteds;
 
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 import me.macnolo.liteds.ui.ClassesRunnables;
 import me.macnolo.liteds.ui.console.ConsoleFragment;
@@ -46,10 +44,14 @@ public class UIThread implements Runnable{
         switch(type){
             case HOME:
                 home.handler.post(new Runnable() {
+                    private MainActivity main;
+
                     @Override
                     public void run() {
                         int battery = home.getBatteryPercent(view);
                         t.setText(battery + "%");
+                        main.ds.getData();
+
                     }
                 });
                 break;

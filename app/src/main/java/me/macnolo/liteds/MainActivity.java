@@ -8,7 +8,6 @@
 
 package me.macnolo.liteds;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
 
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -31,15 +29,13 @@ import me.macnolo.libds.enums.Alliance;
 import me.macnolo.libds.enums.Mode;
 import me.macnolo.libds.enums.Protocol;
 import me.macnolo.liteds.ui.about.AboutActivity;
-import me.macnolo.liteds.ui.home.ModeSpinner;
-import me.macnolo.liteds.ui.home.StationSpinner;
 import me.macnolo.liteds.ui.settings.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
-    LibDS ds;
+    public LibDS ds;
     private SharedPreferences sharedPref;
 
     @Override
@@ -72,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int getTeam() {
-        int team = Integer.parseInt(this.sharedPref.getString("team","-1"));
-        return team;
+        return Integer.parseInt(this.sharedPref.getString("team","-1"));
     }
 
     private Protocol getProtocol() {
@@ -105,17 +100,6 @@ public class MainActivity extends AppCompatActivity {
         return protocol;
     }
 
-    public String getManualIp() {
-        boolean manualSwitch = this.sharedPref.getBoolean("manual_switch", false);
-        if(manualSwitch) {
-            String ip = sharedPref.getString("manual_ip", "-1");
-            return ip;
-        }
-
-        return null;
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -135,29 +119,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    public static String getTeam(Context context) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        String team = sharedPref.getString("team","-1");
-        return team;
-    }
-
-    public static String getProtocol(Context context) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        String protocol = sharedPref.getString("protocol", "-1");
-        return protocol;
-    }
-
-    public static String getManualIp(Context context) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean manualSwitch = sharedPref.getBoolean("manual_switch", false);
-        if(manualSwitch) {
-            String ip = sharedPref.getString("manual_ip", "-1");
-            return ip;
-        }
-
-        return null;
     }
 
     @Override
