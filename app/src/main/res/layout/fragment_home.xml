@@ -5,258 +5,258 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/batteryLevelLabel2"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="20dp"
-        android:text="0.0v"
-        android:textAlignment="center"
+  <TextView
+      android:id="@+id/batteryLevelLabel2"
+      android:layout_width="100dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:layout_marginBottom="20dp"
+      android:text="0.0v"
+      android:textAlignment="center"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/batteryLabel" />
+
+  <TextView
+      android:id="@+id/text_home"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="8dp"
+      android:textAlignment="center"
+      android:textSize="20sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/teamLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="20dp"
+      android:layout_marginBottom="383dp"
+      android:text="@string/main_team"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/teamNumber"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="15dp"
+      android:layout_marginBottom="383dp"
+      android:text="0000"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/teamLabel"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/robotLabel"
+      android:layout_width="80dp"
+      android:layout_height="40dp"
+      android:layout_marginEnd="80dp"
+      android:layout_marginBottom="370dp"
+      android:text="@string/main_robot"
+      android:textAlignment="viewEnd"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/commLabel"
+      android:layout_width="80dp"
+      android:layout_height="40dp"
+      android:layout_marginTop="4dp"
+      android:layout_marginEnd="80dp"
+      android:layout_marginBottom="4dp"
+      android:text="@string/main_com"
+      android:textAlignment="viewEnd"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toTopOf="@+id/controlLabel"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/robotLabel" />
+
+  <TextView
+      android:id="@+id/controlLabel"
+      android:layout_width="80dp"
+      android:layout_height="40dp"
+      android:layout_marginEnd="80dp"
+      android:layout_marginBottom="195dp"
+      android:text="@string/main_joystick"
+      android:textAlignment="textEnd"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <ImageView
+      android:id="@+id/robotAlert"
+      android:layout_width="50dp"
+      android:layout_height="25dp"
+      android:layout_marginStart="5dp"
+      android:layout_marginBottom="383dp"
+      android:background="@color/colorActiveRed"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/robotLabel"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <ImageView
+      android:id="@+id/commAlert"
+      android:layout_width="50dp"
+      android:layout_height="25dp"
+      android:layout_marginStart="5dp"
+      android:layout_marginBottom="16dp"
+      android:background="@color/colorActiveRed"
+      app:layout_constraintBottom_toTopOf="@+id/joystickAlert"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/commLabel"
+      app:layout_constraintTop_toBottomOf="@+id/robotAlert"
+      app:layout_constraintVertical_bias="1.0" />
+
+  <ImageView
+      android:id="@+id/joystickAlert"
+      android:layout_width="50dp"
+      android:layout_height="25dp"
+      android:layout_marginStart="5dp"
+      android:layout_marginBottom="210dp"
+      android:background="@color/colorActiveRed"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/controlLabel"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <Spinner
+      android:id="@+id/stationSpinner"
+      android:layout_width="wrap_content"
+      android:layout_height="40dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="8dp"
+      android:dropDownWidth="185dp"
+      android:entries="@array/station"
+      android:minWidth="185dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/modeSpinner" />
+
+  <Spinner
+      android:id="@+id/modeSpinner"
+      android:layout_width="wrap_content"
+      android:layout_height="40dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="14dp"
+      android:dropDownWidth="185dp"
+      android:entries="@array/mode"
+      android:minWidth="185dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/teamNumber" />
+
+  <TextView
+      android:id="@+id/timerLabel"
+      android:layout_width="130dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="90dp"
+      android:text="@string/main_timer"
+      android:textAlignment="viewEnd"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <TextView
+      android:id="@+id/batteryLabel"
+      android:layout_width="130dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="20dp"
+      android:text="@string/main_battery"
+      android:textAlignment="viewEnd"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <TextView
+      android:id="@+id/phoneBatteryLabel"
+      android:layout_width="130dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:layout_marginBottom="10dp"
+      android:text="Phone Battery:"
+      android:textAlignment="viewEnd"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toTopOf="@+id/batteryLabel"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/timerLabel" />
+
+  <TextView
+      android:id="@+id/timer"
+      android:layout_width="100dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:layout_marginBottom="90dp"
+      android:text="0:00.0"
+      android:textAlignment="center"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/timerLabel" />
+
+  <TextView
+      android:id="@+id/batteryLevelLabel"
+      android:layout_width="100dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:layout_marginBottom="55dp"
+      android:text="0%"
+      android:textAlignment="center"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/phoneBatteryLabel" />
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="60dp"
+      android:orientation="horizontal"
+      android:visibility="visible"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <Button
+        android:id="@+id/enableButton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:text="@string/main_enable"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/batteryLabel" />
+        android:textColor="#4CAF50"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+    <Space
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/teamLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="383dp"
-        android:text="@string/main_team"
+    <Button
+        android:id="@+id/disableButton"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:text="@string/main_disable"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="#F44336"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+  </LinearLayout>
 
-    <TextView
-        android:id="@+id/teamNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="383dp"
-        android:text="0000"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/teamLabel"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/robotLabel"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="370dp"
-        android:text="@string/main_robot"
-        android:textAlignment="viewEnd"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/commLabel"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="4dp"
-        android:text="@string/main_com"
-        android:textAlignment="viewEnd"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/controlLabel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/robotLabel" />
-
-    <TextView
-        android:id="@+id/controlLabel"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="195dp"
-        android:text="@string/main_joystick"
-        android:textAlignment="textEnd"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/robotAlert"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="383dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/robotLabel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/holo_red_dark" />
-
-    <ImageView
-        android:id="@+id/commAlert"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/joystickAlert"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/commLabel"
-        app:layout_constraintTop_toBottomOf="@+id/robotAlert"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:color/holo_red_dark" />
-
-    <ImageView
-        android:id="@+id/joystickAlert"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="210dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/controlLabel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/holo_red_dark" />
-
-    <Spinner
-        android:id="@+id/stationSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:dropDownWidth="185dp"
-        android:entries="@array/station"
-        android:minWidth="185dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modeSpinner" />
-
-    <Spinner
-        android:id="@+id/modeSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="14dp"
-        android:dropDownWidth="185dp"
-        android:entries="@array/mode"
-        android:minWidth="185dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teamNumber" />
-
-    <TextView
-        android:id="@+id/timerLabel"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="90dp"
-        android:text="@string/main_timer"
-        android:textAlignment="viewEnd"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/batteryLabel"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="@string/main_battery"
-        android:textAlignment="viewEnd"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/phoneBatteryLabel"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Phone Battery:"
-        android:textAlignment="viewEnd"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/batteryLabel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerLabel" />
-
-    <TextView
-        android:id="@+id/timer"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="90dp"
-        android:text="0:00.0"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/timerLabel" />
-
-    <TextView
-        android:id="@+id/batteryLevelLabel"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="55dp"
-        android:text="0%"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/phoneBatteryLabel" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/enableButton"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="180dp"
-            android:layout_height="120dp"
-            android:text="@string/main_enable"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#4CAF50"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/disableButton"
-            android:layout_width="180dp"
-            android:layout_height="120dp"
-            android:text="@string/main_disable"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/guideline"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
