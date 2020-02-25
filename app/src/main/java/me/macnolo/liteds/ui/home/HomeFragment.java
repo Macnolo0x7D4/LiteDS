@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -85,11 +86,14 @@ public class HomeFragment extends Fragment {
 
         enableButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                enableButton.setEnabled(false);
+                /*enableButton.setEnabled(false);
                 disableButton.setEnabled(true);
 
                 enableButton.setTextColor(Color.parseColor("#316934"));
                 disableButton.setTextColor(Color.parseColor("#ffcc0000"));
+                 */
+
+                showMessage("Failed to connect.");
             }
         });
 
@@ -128,5 +132,9 @@ public class HomeFragment extends Fragment {
     private int getTeam() {
         int team = Integer.parseInt(this.sharedPref.getString("team", "-1"));
         return team;
+    }
+
+    public void showMessage(String string){
+        Toast.makeText(this.getActivity(), string, Toast.LENGTH_LONG).show();
     }
 }

@@ -24,20 +24,11 @@ import me.macnolo.liteds.R;
 
 public class CameraFragment extends Fragment {
 
-    private CameraViewModel cameraViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        cameraViewModel =
-                ViewModelProviders.of(this).get(CameraViewModel.class);
         View root = inflater.inflate(R.layout.fragment_camera, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        cameraViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+
         return root;
     }
 }

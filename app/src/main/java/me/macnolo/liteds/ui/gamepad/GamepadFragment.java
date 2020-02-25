@@ -24,20 +24,11 @@ import me.macnolo.liteds.R;
 
 public class GamepadFragment extends Fragment {
 
-    private GamepadViewModel gamepadViewModel;
+  public View onCreateView(@NonNull LayoutInflater inflater,
+                           ViewGroup container, Bundle savedInstanceState) {
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        gamepadViewModel =
-                ViewModelProviders.of(this).get(GamepadViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gamepad, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        gamepadViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
-    }
+    View root = inflater.inflate(R.layout.fragment_gamepad, container, false);
+
+    return root;
+  }
 }

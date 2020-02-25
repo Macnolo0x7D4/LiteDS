@@ -35,4 +35,15 @@
         <item>2015</item>
         <item>2014</item>
     </string-array>
+
+    <string-array name="cameras">
+        <item>-- No Camera Available --</item>
+    </string-array>
+
+	<string-array name="gamepads">
+        <item>GamePad 1</item>
+        <item>GamePad 2</item>
+    </string-array>
+
+
 </resources>
