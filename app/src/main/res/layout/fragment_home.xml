@@ -3,7 +3,82 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F0F0F0F0">
+
+  <TextView
+      android:id="@+id/teamLabel6"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="4dp"
+      android:layout_marginBottom="7dp"
+      android:text="@string/executionMenuTitle"
+      android:textAlignment="textStart"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+      android:textSize="16sp"
+      app:layout_constraintBottom_toTopOf="@+id/timerLabel"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <TextView
+      android:id="@+id/teamLabel3"
+      android:layout_width="200dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginBottom="7dp"
+      android:text="@string/teamMenuTitle"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+      android:textSize="16sp"
+      app:layout_constraintBottom_toTopOf="@+id/teamLabel"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <TextView
+      android:id="@+id/teamLabel5"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="48dp"
+      android:layout_marginBottom="7dp"
+      android:text="@string/connectionMenuTitle"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+      android:textSize="16sp"
+      app:layout_constraintBottom_toTopOf="@+id/robotLabel"
+      app:layout_constraintEnd_toEndOf="parent" />
+
+  <TextView
+      android:id="@+id/teamLabel2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="20dp"
+      android:text="@string/spinnerContextMenuTitle"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+      android:textSize="16sp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/teamLabel" />
+
+  <Spinner
+      android:id="@+id/stationSpinner"
+      style="@android:style/Widget.Material.Light.Spinner"
+      android:layout_width="wrap_content"
+      android:layout_height="30dp"
+      android:layout_marginStart="16dp"
+      android:dropDownWidth="185dp"
+      android:entries="@array/station"
+      android:minWidth="185dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/modeSpinner" />
+
+  <Spinner
+      android:id="@+id/modeSpinner"
+      style="@android:style/Widget.Material.Light.Spinner"
+      android:layout_width="wrap_content"
+      android:layout_height="30dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="4dp"
+      android:dropDownWidth="185dp"
+      android:entries="@array/mode"
+      android:minWidth="185dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/teamLabel2" />
 
   <TextView
       android:id="@+id/batteryLevelLabel2"
@@ -14,6 +89,7 @@
       android:text="0.0v"
       android:textAlignment="center"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toEndOf="@+id/batteryLabel" />
 
@@ -38,6 +114,7 @@
       android:layout_marginBottom="383dp"
       android:text="@string/main_team"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -50,6 +127,7 @@
       android:layout_marginBottom="383dp"
       android:text="0000"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toEndOf="@+id/teamLabel"
       app:layout_constraintTop_toTopOf="parent" />
@@ -63,6 +141,7 @@
       android:text="@string/main_robot"
       android:textAlignment="viewEnd"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -77,6 +156,7 @@
       android:text="@string/main_com"
       android:textAlignment="viewEnd"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toTopOf="@+id/controlLabel"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/robotLabel" />
@@ -90,6 +170,7 @@
       android:text="@string/main_joystick"
       android:textAlignment="textEnd"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -131,30 +212,6 @@
       app:layout_constraintStart_toEndOf="@+id/controlLabel"
       app:layout_constraintTop_toTopOf="parent" />
 
-  <Spinner
-      android:id="@+id/stationSpinner"
-      android:layout_width="wrap_content"
-      android:layout_height="40dp"
-      android:layout_marginStart="16dp"
-      android:layout_marginTop="8dp"
-      android:dropDownWidth="185dp"
-      android:entries="@array/station"
-      android:minWidth="185dp"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/modeSpinner" />
-
-  <Spinner
-      android:id="@+id/modeSpinner"
-      android:layout_width="wrap_content"
-      android:layout_height="40dp"
-      android:layout_marginStart="16dp"
-      android:layout_marginTop="14dp"
-      android:dropDownWidth="185dp"
-      android:entries="@array/mode"
-      android:minWidth="185dp"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/teamNumber" />
-
   <TextView
       android:id="@+id/timerLabel"
       android:layout_width="130dp"
@@ -163,6 +220,7 @@
       android:text="@string/main_timer"
       android:textAlignment="viewEnd"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent" />
 
@@ -174,6 +232,7 @@
       android:text="@string/main_battery"
       android:textAlignment="viewEnd"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent" />
 
@@ -186,6 +245,7 @@
       android:text="Phone Battery:"
       android:textAlignment="viewEnd"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toTopOf="@+id/batteryLabel"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/timerLabel" />
@@ -199,6 +259,7 @@
       android:text="0:00.0"
       android:textAlignment="center"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toEndOf="@+id/timerLabel" />
 
@@ -211,13 +272,14 @@
       android:text="0%"
       android:textAlignment="center"
       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textSize="16sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toEndOf="@+id/phoneBatteryLabel" />
 
   <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="60dp"
+      android:layout_marginTop="40dp"
       android:orientation="horizontal"
       android:visibility="visible"
       app:layout_constraintBottom_toBottomOf="parent"
@@ -258,5 +320,12 @@
       android:layout_height="wrap_content"
       android:orientation="vertical"
       app:layout_constraintGuide_begin="20dp" />
+
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/guideline2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      app:layout_constraintGuide_begin="295dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

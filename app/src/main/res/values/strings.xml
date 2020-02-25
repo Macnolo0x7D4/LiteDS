@@ -43,4 +43,9 @@
 
     <string name="credits">Created by Manuel Díaz\nfrom WinT 3794</string>
     <string name="copyright">Copyright © 2020. All rights reserved.\nUnder MIT License.</string>
+    <string name="spinnerContextMenuTitle">Operation Modes:</string>
+    <string name="teamMenuTitle">Team Data:</string>
+    <string name="connectionMenuTitle">Connection Status:</string>
+    <string name="executionMenuTitle">Execution Data:</string>
 </resources>
+
