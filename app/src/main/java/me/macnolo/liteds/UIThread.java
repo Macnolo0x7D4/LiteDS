@@ -8,19 +8,16 @@
 
 package me.macnolo.liteds;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import me.macnolo.libds.etc.Utilities;
 import me.macnolo.liteds.ui.ClassesRunnables;
 import me.macnolo.liteds.ui.console.ConsoleFragment;
 import me.macnolo.liteds.ui.home.HomeFragment;
 
-public class UIThread implements Runnable{
+public class UIThread implements Runnable {
     private HomeFragment home = new HomeFragment();
     private ConsoleFragment console = new ConsoleFragment();
 
@@ -32,7 +29,7 @@ public class UIThread implements Runnable{
     private ClassesRunnables type;
     private int id = 0;
 
-    public UIThread(TextView t, ImageView robotAlert, ImageView commAlert,View view, ClassesRunnables type) {
+    public UIThread(TextView t, ImageView robotAlert, ImageView commAlert, View view, ClassesRunnables type) {
         this.t = t;
         this.view = view;
         this.type = type;
@@ -48,28 +45,25 @@ public class UIThread implements Runnable{
     }
 
     @Override
-    public void run(){
-        switch(type){
+    public void run() {
+        switch (type) {
             case HOME:
                 home.handler.post(new Runnable() {
-                    private MainActivity main;
-                    private byte[] data = new byte[Utilities.DATA_TRANSFER_LENGHT];
-
-                    private int robotStatus;
-                    private int commStatus;
-
-
                     @Override
                     public void run() {
+                        /*int robotStatus;
+                        int commStatus;
+*/
                         int battery = home.getBatteryPercent(view);
                         t.setText(battery + "%");
-                        data = main.ds.getData();
+/*
+                        byte[] data = new MainActivity().ds.getData();
 
                         robotStatus = data[0] == 0 ? Utilities.COLOR_ACTIVE_RED : Utilities.COLOR_ACTIVE_GREEN;
                         commStatus = data[1] == 0 ? Utilities.COLOR_ACTIVE_RED : Utilities.COLOR_ACTIVE_GREEN;
 
                         robotAlert.setBackgroundColor(robotStatus);
-                        commAlert.setBackgroundColor(commStatus);
+                        commAlert.setBackgroundColor(commStatus);*/
                     }
                 });
                 break;

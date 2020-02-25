@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import me.macnolo.libds.enums.Alliance;
-import me.macnolo.liteds.MainActivity;
 
 public class StationSpinner implements AdapterView.OnItemSelectedListener {
     @Override
@@ -20,7 +19,7 @@ public class StationSpinner implements AdapterView.OnItemSelectedListener {
         String stationSelected = parent.getItemAtPosition(position).toString();
         Alliance alliance;
 
-        switch (stationSelected){
+        switch (stationSelected) {
             default:
                 alliance = Alliance.RED1;
                 break;
@@ -40,10 +39,10 @@ public class StationSpinner implements AdapterView.OnItemSelectedListener {
                 alliance = Alliance.BLUE3;
                 break;
         }
-
+/*
         MainActivity main = new MainActivity();
         main.ds.setNewAlliance(alliance);
-        main.ds.updateConfig();
+        main.ds.updateConfig();*/
     }
 
     @Override

@@ -11,18 +11,19 @@ package me.macnolo.liteds;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import com.google.android.material.navigation.NavigationView;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
 
-import android.view.Menu;
-import android.view.MenuItem;
+import com.google.android.material.navigation.NavigationView;
 
 import me.macnolo.libds.controller.LibDS;
 import me.macnolo.libds.enums.Alliance;
@@ -68,12 +69,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int getTeam() {
-        return Integer.parseInt(this.sharedPref.getString("team","-1"));
+        return Integer.parseInt(this.sharedPref.getString("team", "-1"));
     }
 
     private Protocol getProtocol() {
         Protocol protocol;
-        int protocolSelector = Integer.parseInt(this.sharedPref.getString("protocol", "-1"));
+        int protocolSelector = 2014; //Integer.parseInt(this.sharedPref.getString("protocol", "-1"));
 
         switch (protocolSelector) {
             case 2019:
@@ -107,11 +108,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.action_settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
-                startActivityForResult(intentSettings,0);
+                startActivityForResult(intentSettings, 0);
                 return true;
             case R.id.action_about:
                 Intent intentAbout = new Intent(this, AboutActivity.class);

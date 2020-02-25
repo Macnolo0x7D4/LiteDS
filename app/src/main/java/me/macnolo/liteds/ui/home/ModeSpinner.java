@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import me.macnolo.libds.enums.Mode;
-import me.macnolo.liteds.MainActivity;
 
 public class ModeSpinner implements AdapterView.OnItemSelectedListener {
 
@@ -21,7 +20,7 @@ public class ModeSpinner implements AdapterView.OnItemSelectedListener {
         String modeSelected = parent.getItemAtPosition(position).toString();
         Mode mode;
 
-        switch(modeSelected){
+        switch (modeSelected) {
             default:
                 mode = Mode.TELEOP;
                 break;
@@ -35,10 +34,10 @@ public class ModeSpinner implements AdapterView.OnItemSelectedListener {
                 mode = Mode.TEST;
                 break;
         }
-
+/*
         MainActivity main = new MainActivity();
         main.ds.setNewMode(mode);
-        main.ds.updateConfig();
+        main.ds.updateConfig();*/
     }
 
     @Override

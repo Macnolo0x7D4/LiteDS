@@ -8,7 +8,6 @@
 
 package me.macnolo.liteds.ui.home;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.BatteryManager;
@@ -17,28 +16,19 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.preference.PreferenceManager;
 
-import org.w3c.dom.Text;
-
-import java.util.Objects;
-
-import me.macnolo.libds.controller.LibDS;
-import me.macnolo.libds.enums.Alliance;
-import me.macnolo.libds.enums.Mode;
-import me.macnolo.liteds.MainActivity;
+import me.macnolo.libds.enums.Protocol;
 import me.macnolo.liteds.R;
 import me.macnolo.liteds.UIThread;
-import me.macnolo.libds.enums.Protocol;
 import me.macnolo.liteds.ui.ClassesRunnables;
 
 import static android.content.Context.BATTERY_SERVICE;
@@ -50,6 +40,8 @@ public class HomeFragment extends Fragment {
 
     private Button disableButton;
     private Button enableButton;
+    private ImageView robotAlert;
+    private ImageView commAlert;
     private TextView batteryLevelLabel;
     private TextView teamNumber;
     private Spinner modeSpinner;
@@ -71,15 +63,17 @@ public class HomeFragment extends Fragment {
         enableButton = root.findViewById(R.id.enableButton);
         batteryLevelLabel = root.findViewById(R.id.batteryLevelLabel);
         teamNumber = root.findViewById(R.id.teamNumber);
+        robotAlert = root.findViewById(R.id.robotAlert);
+        commAlert = root.findViewById(R.id.commAlert);
 
         modeSpinner = root.findViewById(R.id.modeSpinner);
-        ArrayAdapter<CharSequence> modeAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.mode, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> modeAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.mode, android.R.layout.simple_spinner_item);
         modeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         modeSpinner.setAdapter(modeAdapter);
         modeSpinner.setOnItemSelectedListener(new ModeSpinner());
 
         stationSpinner = root.findViewById(R.id.stationSpinner);
-        ArrayAdapter<CharSequence> stationAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.station, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> stationAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.station, android.R.layout.simple_spinner_item);
         stationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         stationSpinner.setAdapter(stationAdapter);
         modeSpinner.setOnItemSelectedListener(new StationSpinner());
@@ -113,7 +107,7 @@ public class HomeFragment extends Fragment {
 
         teamNumber.setText(Integer.toString(team));
 
-        UIThread thread = new UIThread(batteryLevelLabel, root, ClassesRunnables.HOME);
+        UIThread thread = new UIThread(batteryLevelLabel, robotAlert, commAlert, root, ClassesRunnables.HOME);
         new Thread(thread).start();
         return root;
     }
@@ -125,14 +119,14 @@ public class HomeFragment extends Fragment {
     }
 
     public void updateConfig(boolean reload) {
-        if(reload){
+        if (reload) {
             sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         }
         team = getTeam();
     }
 
     private int getTeam() {
-        int team = Integer.parseInt(this.sharedPref.getString("team","-1"));
+        int team = Integer.parseInt(this.sharedPref.getString("team", "-1"));
         return team;
     }
 }
