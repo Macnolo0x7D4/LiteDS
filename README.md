@@ -2,6 +2,7 @@
 Making communication with your robot easy
 
 ![Android CI](https://github.com/mcn2004/LiteDS/workflows/Android%20CI/badge.svg)
+![New LibDS Gradle](https://github.com/mcn2004/New-LibDS/workflows/Java%20CI%20with%20Gradle/badge.svg)
 
 ## Description
 Hello, my name is Manuel Díaz from WinT 3794 team, and I come to announce the next launch of our driver station, LiteDS.
