@@ -5,12 +5,8 @@
  *  This code is under MIT License. Check LICENSE file at project root .
  * ----------------------------------------------------------------------------
  */
+package me.macnolo.liteds.ui
 
-package me.macnolo.liteds.ui;
-
-public enum ClassesRunnables {
-    HOME,
-    CAMERA,
-    GAMEPAD,
-    CONSOLE
+enum class ClassesRunnables {
+    HOME, CAMERA, GAMEPAD, CONSOLE
 }

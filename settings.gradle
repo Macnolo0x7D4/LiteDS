@@ -1,2 +1,2 @@
-include ':app', ':libds'
-rootProject.name='LiteDS'
+include ':app'
+rootProject.name = "LiteDS"
